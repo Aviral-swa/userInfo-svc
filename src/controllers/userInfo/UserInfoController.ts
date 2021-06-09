@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { userinfo } from '../../libs/mockData';
-import { HomeService } from '../../services';
+// import { userinfo } from '../../libs/mockData';
+import { UserInfoService } from '../../services';
 
 class UserInfoController {
   static instance: UserInfoController;
@@ -13,24 +13,24 @@ class UserInfoController {
         UserInfoController.instance = new UserInfoController();
         return UserInfoController.instance;
     }
-    private userRepository: HomeService;
+    private userInfoRepository: UserInfoService;
     constructor() {
-        this.userRepository = new HomeService;
+        this.userInfoRepository = new UserInfoService();
     }
 
    public getUserInfo = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // const result = await UserInfoController.getInstance()._homeService.list(limit, skip);
-      if (!userinfo) {
+      const userinfo = await this.userInfoRepository.get();
+      if (!userinfo.length) {
         return res.status(200).send({
-          message: 'No Data',
           data: [],
+          message: 'No Data',
           status: 200,
         });
       }
       res.status(200).send({
-        message: 'Successfully fetched',
         data: userinfo,
+        message: 'Successfully fetched',
         status: 200,
     });
     } catch (err) {

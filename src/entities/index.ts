@@ -1,4 +1,4 @@
-import IHome from './IHome';
+import IHome from './IUserInfo';
 
 export{
     IHome,

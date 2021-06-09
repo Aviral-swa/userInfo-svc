@@ -2,7 +2,7 @@ import MongoMemoryServer from 'mongodb-memory-server';
 import * as mongoose from 'mongoose';
 import * as sinon from 'sinon';
 import * as supertest from 'supertest';
-import { homeModel } from '../../repositories/business/home/model';
+import { userInfoModel } from '../../repositories/business/userInfo/model';
 import config from '../../config/configuration';
 import { API_PREFIX } from '../../libs/constants';
 import Server from '../../Server';

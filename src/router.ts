@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import userInfoRouter from './controllers/user/route';
+import userInfoRouter from './controllers/userInfo/route';
 
 /* tslint:disable: no-var-requires */
 const appInfo = require('../package.json');

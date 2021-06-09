@@ -1,3 +1,3 @@
-import HomeService from './home/HomeService';
+import UserInfoService from './userInfo/UserInfoService';
 
-export { HomeService };
+export { UserInfoService };

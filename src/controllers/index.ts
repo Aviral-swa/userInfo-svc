@@ -1,5 +1,5 @@
 // export { default as homes } from './home';
 
-import HomeController from './user/UserInfoController';
+import HomeController from './userInfo/UserInfoController';
 
 export { HomeController };

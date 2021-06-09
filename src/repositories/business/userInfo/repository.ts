@@ -2,14 +2,14 @@ import * as mongoose from 'mongoose';
 import { Nullable } from '../../../libs/Nullable';
 import VersioningRepository from '../../versionable/VersioningRepository';
 import { IQueryCreate, IQueryDelete, IQueryGet, IQueryList, IQueryUpdate } from './entities';
-import IHomeModel from './IModel';
-import { homeModel } from './model';
+import IUserInfoModel from './IModel';
+import { userInfoModel } from './model';
 
-export default class HomeRepository extends VersioningRepository<IHomeModel,
-  mongoose.Model<IHomeModel>> {
+export default class HomeRepository extends VersioningRepository<IUserInfoModel,
+  mongoose.Model<IUserInfoModel>> {
 
   constructor() {
-    super(homeModel);
+    super(userInfoModel);
   }
   /**
    * Get home list.
@@ -17,7 +17,7 @@ export default class HomeRepository extends VersioningRepository<IHomeModel,
    * @property {number} limit - Limit number of records to be returned.
    * @returns {Home[]}
    */
-  public async list(options: IQueryList): Promise<IHomeModel[]> {
+  public async list(options: IQueryList): Promise<IUserInfoModel[]> {
 
     console.debug('Home - List query: ', options);
 
@@ -29,10 +29,10 @@ export default class HomeRepository extends VersioningRepository<IHomeModel,
    * @property {string} id - _id of the record
    * @returns {Home}
    */
-  public async get(query: IQueryGet): Promise<Nullable<IHomeModel>> {
+  public async get(): Promise<Nullable<IUserInfoModel[]>> {
 
     console.debug('HomeRepository - Get: ');
-    return super.getById(query.id);
+    return super.getAll();
   }
 
   /**
@@ -40,7 +40,7 @@ export default class HomeRepository extends VersioningRepository<IHomeModel,
    * @property {string} name - The name of record.
    * @returns {Home}
    */
-  public async create(options: IQueryCreate): Promise<IHomeModel> {
+  public async create(options: IQueryCreate): Promise<IUserInfoModel> {
     console.debug('HomeRepository - Create: ');
     return super.create(options);
   }
@@ -50,7 +50,7 @@ export default class HomeRepository extends VersioningRepository<IHomeModel,
    * @property {string} name - The name of record.
    * @returns {Home}
    */
-  public async update(options: IQueryUpdate): Promise<IHomeModel> {
+  public async update(options: IQueryUpdate): Promise<IUserInfoModel> {
     console.debug('HomeRepository - Update: ');
     return super.update(options);
   }
@@ -59,7 +59,7 @@ export default class HomeRepository extends VersioningRepository<IHomeModel,
    * @property {string} body.name - The name of record.
    * @returns {Home}
    */
-  public async delete(query: IQueryDelete): Promise<IHomeModel> {
+  public async delete(query: IQueryDelete): Promise<IUserInfoModel> {
     console.debug('HomeRepository - Delete: ');
     return super.remove(query.id);
   }
@@ -69,7 +69,7 @@ export default class HomeRepository extends VersioningRepository<IHomeModel,
    * @property {string} body.name - The name of record.
    * @returns {Home}
    */
-  public async hardDelete(query: IQueryDelete): Promise<IHomeModel> {
+  public async hardDelete(query: IQueryDelete): Promise<IUserInfoModel> {
     console.debug('HomeRepository - Hard Delete: ');
     return super.hardRemove(query);
   }

@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
-import IHomeModel from './IModel';
-import HomeSchema from './schema';
+import IUserModel from './IModel';
+import UserInfoSchema from './schema';
 
 /**
  * Home Schema
@@ -76,8 +76,8 @@ import HomeSchema from './schema';
  *         example: 1
  */
 
-export const homeSchema = new HomeSchema({
-  collection: 'Homes',
+export const userInfoSchema = new UserInfoSchema({
+  collection: 'Users',
   toJSON: {
     transform: (doc, ret) => {
       ret.id = ret._id;
@@ -102,7 +102,7 @@ export const homeSchema = new HomeSchema({
  * - validation
  * - virtual
  */
-homeSchema.pre('save', (next: any) => {
+userInfoSchema.pre('save', (next: any) => {
   // this.updateDate = new Date();
   next();
 });
@@ -110,26 +110,26 @@ homeSchema.pre('save', (next: any) => {
 /**
  * Indicies
  */
-homeSchema.index({ name: 1 }, { unique: true });
+userInfoSchema.index({ city: 1, testId: 1 }, { unique: true });
 
 /**
  * Methods
  */
-homeSchema.method({});
+userInfoSchema.method({});
 
 /**
  * Statics
  */
-homeSchema.statics = {};
+userInfoSchema.statics = {};
 
 /**
  * @typedef Home
  */
 
-export const homeModel: mongoose.Model<IHomeModel> = mongoose.model<IHomeModel>
+export const userInfoModel: mongoose.Model<IUserModel> = mongoose.model<IUserModel>
   (
-    'Home',
-    homeSchema,
-    'Homes',
+    'Userinfo',
+    userInfoSchema,
+    'Userinfo',
      true,
   );
